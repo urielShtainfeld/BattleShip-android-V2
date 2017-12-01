@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="200dp"
     android:background="@drawable/mainbackground"
     tools:context="com.example.ushtinfeld.battleship_uriel.MainActivity">
 
@@ -17,38 +20,42 @@
         android:weightSum="1"
         android:soundEffectsEnabled="true"
         android:id="@+id/linearLayout"
-        android:paddingTop="30dp"
+        android:paddingTop="60dp"
         android:layout_alignParentBottom="true">
 
         <Button
             android:id="@+id/Easy"
             android:layout_width="@string/ButtonWidth"
             android:layout_height="@string/ButtonHeight"
-            android:background="@color/yellow"
+            android:background="#b195c0d3"
+            android:backgroundTint="#ec517281"
             android:text="@string/easy"
-            tools:layout_editor_absoluteX="117dp"
-            tools:layout_editor_absoluteY="247dp"
-            android:onClick="startGame"/>
+            android:longClickable="true"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:onClick="startGame" />
 
         <Button
             android:id="@+id/Medium"
             android:layout_width="@string/ButtonWidth"
             android:layout_height="@string/ButtonHeight"
-            android:background="@color/yellow"
+            android:background="#b195c0d3"
+            android:backgroundTint="#ec517281"
             android:text="@string/medium"
-            tools:layout_editor_absoluteX="117dp"
-            tools:layout_editor_absoluteY="304dp"
-            android:onClick="startGame"/>
+            android:layout_marginTop="20dp"
+            android:onClick="startGame"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/Hard"
             android:layout_width="@string/ButtonWidth"
             android:layout_height="@string/ButtonHeight"
-            android:background="@color/yellow"
+            android:background="#b195c0d3"
+            android:backgroundTint="#ec517281"
             android:text="@string/hard"
-            tools:layout_editor_absoluteX="117dp"
-            tools:layout_editor_absoluteY="361dp"
-            android:onClick="startGame"/>
-    </LinearLayout>
+            android:onClick="startGame"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"/>
 
-</android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+</RelativeLayout>

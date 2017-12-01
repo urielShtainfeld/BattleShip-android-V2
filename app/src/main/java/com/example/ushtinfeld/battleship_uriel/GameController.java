@@ -4,12 +4,11 @@ package com.example.ushtinfeld.battleship_uriel;
  * Created by ushtinfeld on 01/12/2017.
  */
 
-public class GameConroller {
+public class GameController {
         private static final int NO_OF_SHIPS = 5;
         private static final int BOARD_SIZE = 20;
         private int shipsLeft;
         private Ship[] ships;
-        // private enum level{EASY,MEDIUM,HARD};
 
 
         public void createBoard(){
