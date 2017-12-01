@@ -3,8 +3,6 @@
     <string name="easy">EASY</string>
     <string name="medium">MEDIUM</string>
     <string name="hard">HARD</string>
-    <string name="ButtonWidth">150dp</string>
-    <string name="ButtonHeight">50dp</string>
     <string name="start">Start</string>
     <string name="random">Random</string>
 </resources>
