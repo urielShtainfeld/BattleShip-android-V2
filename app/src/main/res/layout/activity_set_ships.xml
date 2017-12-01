@@ -6,4 +6,38 @@
     android:layout_height="match_parent"
     tools:context="com.example.ushtinfeld.battleship_uriel.Set_Ships">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:outlineProvider="bounds"
+        android:weightSum="1"
+        android:soundEffectsEnabled="true"
+        android:id="@+id/linearLayout"
+        android:paddingTop="30dp"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/Start"
+            android:layout_width="@string/ButtonWidth"
+            android:layout_height="@string/ButtonHeight"
+            android:background="@color/yellow"
+            android:onClick="startAfterSet"
+            android:text="@string/start"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="378dp" />
+
+        <Button
+            android:id="@+id/Random"
+            android:layout_width="@string/ButtonWidth"
+            android:layout_height="@string/ButtonHeight"
+            android:layout_marginRight="16dp"
+            android:background="@color/yellow"
+            android:onClick="SetRandomShips"
+            android:text="@string/random"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteY="378dp" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

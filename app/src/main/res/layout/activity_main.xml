@@ -4,15 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/mainbackground"
     tools:context="com.example.ushtinfeld.battleship_uriel.MainActivity">
 
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:outlineProvider="bounds"
+        android:weightSum="1"
+        android:soundEffectsEnabled="true"
+        android:id="@+id/linearLayout"
+        android:paddingTop="30dp"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/Easy"
+            android:layout_width="@string/ButtonWidth"
+            android:layout_height="@string/ButtonHeight"
+            android:background="@color/yellow"
+            android:text="@string/easy"
+            tools:layout_editor_absoluteX="117dp"
+            tools:layout_editor_absoluteY="247dp"
+            android:onClick="startGame"/>
+
+        <Button
+            android:id="@+id/Medium"
+            android:layout_width="@string/ButtonWidth"
+            android:layout_height="@string/ButtonHeight"
+            android:background="@color/yellow"
+            android:text="@string/medium"
+            tools:layout_editor_absoluteX="117dp"
+            tools:layout_editor_absoluteY="304dp"
+            android:onClick="startGame"/>
+
+        <Button
+            android:id="@+id/Hard"
+            android:layout_width="@string/ButtonWidth"
+            android:layout_height="@string/ButtonHeight"
+            android:background="@color/yellow"
+            android:text="@string/hard"
+            tools:layout_editor_absoluteX="117dp"
+            tools:layout_editor_absoluteY="361dp"
+            android:onClick="startGame"/>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
