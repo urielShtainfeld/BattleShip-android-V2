@@ -1,17 +1,20 @@
-package entities;
+package components;
 
 import android.content.Context;
 import android.media.Image;
-import android.widget.Button;
+import android.widget.ImageButton;
+import android.view.View;
 
 
-public class Cell extends Button {
+public class Cell extends ImageButton implements View.OnClickListener {
+
     private boolean gotShip;
     private boolean gotHit;
     private boolean enabled;
     private int row;
     private int col;
     private Image image;
+    private CellListener listener;
 
     public Cell(Context context, int row, int col) {
         super(context);
@@ -21,13 +24,18 @@ public class Cell extends Button {
         this.col = col;
 
     }
+    public void onClick(View v) {
+        listener.buttonClicked(this);
+    }
 
-    @Override
+    public void setListener(CellListener listener) {
+        this.listener = listener;
+    }
+
     public boolean isEnabled() {
         return enabled;
     }
 
-    @Override
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
@@ -67,5 +75,5 @@ public class Cell extends Button {
     public void setImage(Image image) {
         this.image = image;
     }
-}
 
+}

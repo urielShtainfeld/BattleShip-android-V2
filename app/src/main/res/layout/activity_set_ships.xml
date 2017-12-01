@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ushtinfeld.battleship_uriel.entities.Set_Ships">
+    tools:context="com.example.ushtinfeld.battleship_uriel.Set_Ships">
 
     <LinearLayout
         android:orientation="vertical"
@@ -21,8 +21,8 @@
 
         <Button
             android:id="@+id/Start"
-            android:layout_width="@string/ButtonWidth"
-            android:layout_height="@string/ButtonHeight"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:background="@color/yellow"
             android:onClick="startAfterSet"
             android:text="@string/start"
@@ -31,8 +31,8 @@
 
         <Button
             android:id="@+id/Random"
-            android:layout_width="@string/ButtonWidth"
-            android:layout_height="@string/ButtonHeight"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:layout_marginRight="16dp"
             android:background="@color/yellow"
             android:onClick="SetRandomShips"

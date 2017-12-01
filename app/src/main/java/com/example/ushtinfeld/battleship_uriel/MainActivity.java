@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 
 import components.LevelButton;
-import entities.Set_Ships;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

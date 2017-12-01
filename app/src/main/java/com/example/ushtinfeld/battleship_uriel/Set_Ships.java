@@ -1,4 +1,4 @@
-package entities;
+package com.example.ushtinfeld.battleship_uriel;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
