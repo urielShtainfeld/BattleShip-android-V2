@@ -1,4 +1,4 @@
-package com.example.ushtinfeld.battleship_uriel;
+package entities;
 
 
 public class Timer extends Thread implements Runnable {

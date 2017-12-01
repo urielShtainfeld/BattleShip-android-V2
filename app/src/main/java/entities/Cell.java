@@ -1,4 +1,4 @@
-package com.example.ushtinfeld.battleship_uriel;
+package entities;
 
 import android.content.Context;
 import android.media.Image;

@@ -1,8 +1,5 @@
-package com.example.ushtinfeld.battleship_uriel;
+package entities;
 
-/**
- * Created by ushtinfeld on 01/12/2017.
- */
 
 public class GameController {
         private static final int NO_OF_SHIPS = 5;
