@@ -8,4 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="HeadLines" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">22sp</item>
+    </style>
 </resources>

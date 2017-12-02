@@ -1,9 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ushtinfeld.battleship_uriel.Game">
+    android:id="@+id/gameLayout"
+    tools:context="com.example.ushtinfeld.battleship_uriel.Game"
+    android:background="@drawable/game_background">
 
-</android.support.constraint.ConstraintLayout>
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:stretchColumns="*"
+        android:id="@+id/myBoard"
+        >
+    </TableLayout>
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_toRightOf="@+id/myBoard"
+        android:stretchColumns="*"
+        android:id="@+id/topScoresTable"
+        android:gravity="end"
+        >
+
+        <TableRow>
+            <TextView
+                style="@style/HeadLines"
+                android:layout_gravity="center"
+                android:text="@string/time" />
+        </TableRow>
+        <TableRow>
+            <Chronometer
+                android:id="@+id/chronometer"
+                android:format="%s"
+                android:gravity="center" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                style="@style/HeadLines"
+                android:layout_gravity="center"
+                android:text="Ships left" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_gravity="center"
+                android:text="000"
+                android:id="@+id/shipsLeft"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                style="@style/HeadLines"
+                android:layout_gravity="center"
+                android:text="COM Ships left" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:text="000"
+                android:id="@+id/COMShipsLeft"/>
+        </TableRow>
+    </TableLayout>
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_below="@+id/myBoard"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:stretchColumns="*"
+        android:id="@+id/opBoard"
+        >
+    </TableLayout>
+</RelativeLayout>
