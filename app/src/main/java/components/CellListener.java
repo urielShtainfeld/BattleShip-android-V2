@@ -5,5 +5,5 @@ package components;
  */
 
 public interface CellListener {
-    void buttonClicked(Cell cellListener);
+    void buttonClicked(Cell cell);
 }

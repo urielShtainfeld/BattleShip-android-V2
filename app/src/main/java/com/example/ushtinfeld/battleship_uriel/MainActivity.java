@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setButtons();
-
     }
     private void setButtons() {
         easyBtn = (Button) findViewById(R.id.Easy);

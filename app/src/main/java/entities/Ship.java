@@ -8,15 +8,17 @@ public class Ship {
     private int size;
     private int ID = 0;
     private int noOfHits;
-
+    ShipLocation[] locations;
 
     public Ship(int size) {
         this.size = size;
         this.ID = ID++;
         this.sink = false;
         this.noOfHits = 0;
-        ArrayList<ShipLocation> location = new ArrayList<ShipLocation>();
-
+        locations = new ShipLocation[size];
+        for (ShipLocation location:locations) {
+            location = new ShipLocation(-1,-1,false);
+        }
     }
 
 
@@ -45,12 +47,18 @@ public class Ship {
     }
 
     public int getNoOfHits() {
-
         return noOfHits;
     }
-
     public void setNoOfHits(int noOfHits) {
         this.noOfHits = noOfHits;
+    }
+
+    public ShipLocation[] getLocations() {
+        return locations;
+    }
+
+    public void setLocations(ShipLocation[] locations) {
+        this.locations = locations;
     }
 }
 

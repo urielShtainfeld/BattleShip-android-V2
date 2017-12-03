@@ -6,4 +6,7 @@
     <string name="start">Start</string>
     <string name="random">Random</string>
     <string name="time">Time</string>
+    <string name="ships_left">Ships left</string>
+    <string name="com_ships_left">COM Ships left</string>
+    <string name="_000">000</string>
 </resources>

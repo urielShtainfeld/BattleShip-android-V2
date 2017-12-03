@@ -17,6 +17,7 @@ public class Cell extends ImageButton implements View.OnClickListener {
 
     public Cell(Context context) {
         super(context);
+        setOnClickListener(this);
         this.gotHit = false;
         this.gotShip = false;
 
@@ -41,16 +42,9 @@ public class Cell extends ImageButton implements View.OnClickListener {
         return row;
     }
 
-    public void setRow(int row) {
-        this.row = row;
-    }
 
     public int getCol() {
         return col;
-    }
-
-    public void setCol(int col) {
-        this.col = col;
     }
 
     public boolean isGotShip() {
@@ -70,9 +64,9 @@ public class Cell extends ImageButton implements View.OnClickListener {
     }
 
 
-    public void setPosition(int ros,int col){
-        this.row = row;
+    public void setPosition(int row, int col){
         this.col = col;
+        this.row = row;
     }
 
 }
