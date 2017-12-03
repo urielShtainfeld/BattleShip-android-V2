@@ -19,22 +19,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setButtons();
 
     }
-    public void startGame(int id,View view) {
-        Intent setShips = new Intent(this, Set_Ships.class);
-
-        switch (view.getId()) {
-            case R.id.Easy:
-                setShips.putExtra("Level", R.string.easy);
-                break;
-            case R.id.Medium:
-                setShips.putExtra("Level", R.string.medium);
-                break;
-            case R.id.Hard:
-                setShips.putExtra("Level", R.string.hard);
-                break;
-        }
-            startActivity(setShips);
-    }
     private void setButtons() {
         easyBtn = (Button) findViewById(R.id.Easy);
         easyBtn.setOnClickListener(this);
@@ -47,8 +31,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void onClick(View view) {
+
+        Intent Game = new Intent(this, Game.class);
         int id = view.getId();
-        startGame(id,view);
+        switch (view.getId()) {
+            case R.id.Easy:
+                Game.putExtra("Level", "EASY");
+                break;
+            case R.id.Medium:
+                Game.putExtra("Level", "MEDIUM");
+                break;
+            case R.id.Hard:
+                Game.putExtra("Level", "HARD");
+                break;
         }
+        startActivity(Game);
+    }
 }
 

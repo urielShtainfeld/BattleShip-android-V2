@@ -66,12 +66,44 @@
                 android:id="@+id/COMShipsLeft"/>
         </TableRow>
     </TableLayout>
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_below="@+id/myBoard"
+        android:layout_above="@+id/buttons"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:stretchColumns="*"
-        android:id="@+id/opBoard"
+        android:id="@+id/SetAndOpBoard"
         >
-    </TableLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:outlineProvider="bounds"
+        android:weightSum="1"
+        android:soundEffectsEnabled="true"
+        android:id="@+id/buttons"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/Start"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="#b195c0d3"
+            android:backgroundTint="#ec517281"
+            android:layout_marginRight="20dp"
+            android:text="@string/start"
+            android:textColor="@color/yellow" />
+
+        <Button
+            android:id="@+id/Random"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="16dp"
+            android:background="#b195c0d3"
+            android:backgroundTint="#ec517281"
+            android:layout_marginLeft="20dp"
+            android:text="@string/random"
+            android:textColor="@color/yellow"/>
+    </LinearLayout>
 </RelativeLayout>

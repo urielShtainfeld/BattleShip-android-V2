@@ -6,14 +6,13 @@ import android.widget.ImageButton;
 import android.view.View;
 
 
-public class Cell extends android.support.v7.widget.AppCompatImageButton implements View.OnClickListener {
+public class Cell extends ImageButton implements View.OnClickListener {
 
     private boolean gotShip;
     private boolean gotHit;
     private boolean enabled;
     private int row;
     private int col;
-    private Image image;
     private CellListener listener;
 
     public Cell(Context context) {
@@ -70,9 +69,6 @@ public class Cell extends android.support.v7.widget.AppCompatImageButton impleme
         this.gotHit = gotHit;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
-    }
 
     public void setPosition(int ros,int col){
         this.row = row;
