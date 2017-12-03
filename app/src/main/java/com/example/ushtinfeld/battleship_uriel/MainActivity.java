@@ -12,10 +12,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button easyBtn;
     private Button medBtn;
     private Button hardBtn;
-    private String lastLevel = null;
-    private int easyBS, mediumBS, hardBS;
-    private Intent intent;
-    public GameController game = new GameController();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,12 +19,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setButtons();
 
     }
-    public void startGame(){
-        //need to change level
+    public void startGame(int id,View view) {
         Intent setShips = new Intent(this, Set_Ships.class);
-        startActivity(setShips);
-    };
 
+        switch (view.getId()) {
+            case R.id.Easy:
+                setShips.putExtra("Level", R.string.easy);
+                break;
+            case R.id.Medium:
+                setShips.putExtra("Level", R.string.medium);
+                break;
+            case R.id.Hard:
+                setShips.putExtra("Level", R.string.hard);
+                break;
+        }
+            startActivity(setShips);
+    }
     private void setButtons() {
         easyBtn = (Button) findViewById(R.id.Easy);
         easyBtn.setOnClickListener(this);
@@ -42,24 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View view) {
         int id = view.getId();
-        switch (view.getId()) {
-            case R.id.Easy:
-                    game.setLevel(view.toString());
-                    startGame();
-                break;
-            case R.id.Medium:
-                    game.setLevel(view.toString());
-                    startGame();
-                break;
-            case R.id.Hard:
-                    game.setLevel(view.toString());
-                    startGame();
-                break;
-
+        startGame(id,view);
         }
-    }
-
-    public GameController getGame() {
-        return game;
-    }
 }
+
