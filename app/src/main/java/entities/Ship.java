@@ -6,13 +6,11 @@ import java.util.ArrayList;
 public class Ship {
     private boolean sink;
     private int size;
-    private int ID = 0;
     private int noOfHits;
     ShipLocation[] locations;
 
     public Ship(int size) {
         this.size = size;
-        this.ID = ID++;
         this.sink = false;
         this.noOfHits = 0;
         locations = new ShipLocation[size];
@@ -42,10 +40,6 @@ public class Ship {
         this.sink = sink;
     }
 
-    public int getID() {
-        return ID;
-    }
-
     public int getNoOfHits() {
         return noOfHits;
     }
@@ -59,6 +53,14 @@ public class Ship {
 
     public void setLocations(ShipLocation[] locations) {
         this.locations = locations;
+    }
+
+    public void clearShip(){
+        this.sink = false;
+        this.noOfHits = 0;
+        for (ShipLocation location:locations) {
+            location.setLocation(-1,-1);
+        }
     }
 }
 

@@ -64,7 +64,7 @@ public class Cell extends ImageButton implements View.OnClickListener {
     }
 
 
-    public void setPosition(int row, int col){
+    public void setPosition(int col, int row){
         this.col = col;
         this.row = row;
     }

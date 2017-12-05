@@ -35,4 +35,9 @@ public class ShipLocation {
     public void setHit(boolean hit) {
         this.hit = hit;
     }
+
+    public void setLocation(int x,int y){
+        this.X = x;
+        this.Y = y;
+    }
 }

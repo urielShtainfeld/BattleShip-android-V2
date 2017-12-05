@@ -95,7 +95,7 @@
         android:layout_alignParentBottom="true">
         <Button
             android:id="@+id/Start"
-            android:layout_width="150dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
             android:background="#b195c0d3"
             android:backgroundTint="#ec517281"
@@ -104,14 +104,25 @@
             android:textColor="@color/yellow" />
 
         <Button
-            android:id="@+id/Random"
-            android:layout_width="150dp"
+        android:id="@+id/Random"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="16dp"
+        android:background="#b195c0d3"
+        android:backgroundTint="#ec517281"
+        android:layout_marginLeft="20dp"
+        android:text="@string/random"
+        android:textColor="@color/yellow"/>
+
+        <Button
+            android:id="@+id/Clear"
+            android:layout_width="75dp"
             android:layout_height="50dp"
             android:layout_marginRight="16dp"
             android:background="#b195c0d3"
             android:backgroundTint="#ec517281"
             android:layout_marginLeft="20dp"
-            android:text="@string/random"
+            android:text="@string/clear"
             android:textColor="@color/yellow"/>
     </LinearLayout>
 </RelativeLayout>

@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TableLayout;
 
 import com.example.ushtinfeld.battleship_uriel.Game;
 import com.example.ushtinfeld.battleship_uriel.R;
@@ -29,6 +28,7 @@ public class GameController {
     private Cell [][] setBoard;
     private RelativeLayout setTable;
     private boolean setMode ;
+
 
 
     public GameController(String level) {
@@ -55,11 +55,10 @@ public class GameController {
             setColsLayout = new LinearLayout(setShipsScreen);
             setColsLayout.setBackgroundColor(Color.TRANSPARENT);
             setColsLayout.setOrientation(LinearLayout.HORIZONTAL);
-
             setColsLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             for (int row = 0; row < controller.getBoardSize(); row++) {
                 setBoard[col][row] = new Cell(setShipsScreen);
-                setBoard[col][row].setPosition(row, col);
+                setBoard[col][row].setPosition(col,row);
                 setBoard[col][row].setListener(setShipsScreen);
                 setBoard[col][row].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT));
                 setColsLayout.addView(setBoard[col][row]);
@@ -90,9 +89,6 @@ public class GameController {
     public boolean isSetMode() {
         return setMode;
     }
-    public Cell getCellFromSetBoard(int row,int col){
-            return this.setBoard[row][col];
-    }
 
     public void setSetMode(boolean setMode) {
         this.setMode = setMode;
@@ -100,11 +96,17 @@ public class GameController {
     public Cell[][] getSetBoard() {
         return setBoard;
     }
+
+    public RelativeLayout getSetTable() {
+        return setTable;
+    }
+
     public void setLevel(String level) {
         int i = 0;
         switch (level) {
             case "EASY":
                 setBoardSize(EASY_BOARD_SIZE);
+
                 ships = new Ship[EASY_NO_OF_SHIPS];
                 for (Ship ship:ships) {
                     ship = new Ship(EASY_SHIPS_SIZE[i]);
