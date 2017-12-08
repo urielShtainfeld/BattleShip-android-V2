@@ -12,16 +12,12 @@ import com.example.ushtinfeld.battleship_uriel.R;
 import components.Cell;
 
 public class GameController {
-    private static final int EASY_NO_OF_SHIPS = 3;
-    private static final int MEDIUM_NO_OF_SHIPS = 4;
-    private static final int HARD_NO_OF_SHIPS = 5;
     private static final int HARD_BOARD_SIZE = 10;
     private static final int MEDIUM_BOARD_SIZE = 9;
     private static final int EASY_BOARD_SIZE = 8;
-    public static final int[] EASY_SHIPS_SIZE = {3,4,5};
-    public static final int[] MEDIUM_SHIPS_SIZE = {2,3,4,5};
-    public static final int[] HARD_SHIPS_SIZE = {2,3,3,4,5};
-    private Ship[] ships;
+    public static final int[] EASY_SHIPS_SIZES = {3,4,5};
+    public static final int[] MEDIUM_SHIPS_SIZES = {2,3,4,5};
+    public static final int[] HARD_SHIPS_SIZES = {2,3,4,5,6};
     int boardSize;
     private LinearLayout setRowsLayout;
     private LinearLayout setColsLayout;
@@ -79,9 +75,6 @@ public class GameController {
         this.boardSize = boardSize;
     }
 
-    public Ship[] getShips() {
-        return ships;
-    }
 
     public void checkCell(int row, int col) {
 
@@ -106,28 +99,12 @@ public class GameController {
         switch (level) {
             case "EASY":
                 setBoardSize(EASY_BOARD_SIZE);
-
-                ships = new Ship[EASY_NO_OF_SHIPS];
-                for (Ship ship:ships) {
-                    ship = new Ship(EASY_SHIPS_SIZE[i]);
-                    i++;
-                }
                 break;
             case "MEDIUM":
                 setBoardSize(MEDIUM_BOARD_SIZE);
-                ships = new Ship[MEDIUM_NO_OF_SHIPS];
-                for (Ship ship:ships) {
-                    ship = new Ship(MEDIUM_SHIPS_SIZE[i]);
-                    i++;
-                }
                 break;
             case "HARD":
                 setBoardSize(HARD_BOARD_SIZE);
-                ships = new Ship[HARD_NO_OF_SHIPS];
-                for (Ship ship:ships) {
-                    ship = new Ship(HARD_SHIPS_SIZE[i]);
-                    i++;
-                }
                 break;
 
         }

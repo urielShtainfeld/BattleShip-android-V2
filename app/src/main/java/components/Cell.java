@@ -10,6 +10,7 @@ public class Cell extends ImageButton implements View.OnClickListener {
 
     private boolean gotShip;
     private boolean gotHit;
+    private boolean besideShip;
     private boolean enabled;
     private int row;
     private int col;
@@ -42,7 +43,6 @@ public class Cell extends ImageButton implements View.OnClickListener {
         return row;
     }
 
-
     public int getCol() {
         return col;
     }
@@ -53,6 +53,14 @@ public class Cell extends ImageButton implements View.OnClickListener {
 
     public void setGotShip(boolean gotShip) {
         this.gotShip = gotShip;
+    }
+
+    public boolean isBesideShip() {
+        return besideShip;
+    }
+
+    public void setBesideShip(boolean besideShip) {
+        this.besideShip = besideShip;
     }
 
     public boolean isGotHit() {
