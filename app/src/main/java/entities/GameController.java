@@ -47,7 +47,7 @@ public class GameController {
         setRowsLayout = new LinearLayout(game);
         setRowsLayout.setBackgroundColor(Color.TRANSPARENT);
         setRowsLayout.setOrientation(LinearLayout.VERTICAL);
-        setRowsLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        //setRowsLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         for (int col = 0; col < controller.getBoardSize(); col++) {
             setColsLayout = new LinearLayout(game);
             setColsLayout.setBackgroundColor(Color.TRANSPARENT);
@@ -57,9 +57,14 @@ public class GameController {
                 userBoard[col][row] = new Cell(game);
                 userBoard[col][row].setPosition(col,row);
                 userBoard[col][row].setListener(game);
-                userBoard[col][row].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT));
+               // userBoard[col][row].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT));
                 setColsLayout.addView(userBoard[col][row]);
-                userBoard[col][row].setBackgroundResource(R.drawable.grey_user_board);
+                if (getSetBoard()[col][row].isGotShip()){
+                    userBoard[col][row].setGotShip(true);
+                    userBoard[col][row].setBackgroundResource(R.drawable.blue15x15);
+                }else{
+                    userBoard[col][row].setBackgroundResource(R.drawable.grey15x15);
+                }
             }
             setRowsLayout.addView(setColsLayout);
         }
@@ -633,4 +638,6 @@ public class GameController {
     public void setUserBoard(Cell[][] userBoard) {
         this.userBoard = userBoard;
     }
+
+
 }

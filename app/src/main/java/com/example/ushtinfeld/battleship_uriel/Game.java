@@ -51,6 +51,8 @@ public class Game extends AppCompatActivity implements CellListener, View.OnClic
             int col = cell.getCol();
             int row = cell.getRow();
             controller.setShips(col, row,this,controller);
+        }else{
+
         }
     }
 
@@ -67,16 +69,19 @@ public class Game extends AppCompatActivity implements CellListener, View.OnClic
                 controller.setRandomMode(false);
                 break;
             case R.id.Start:
+                startBtn.setVisibility(View.GONE);
+                randomBtn.setVisibility(View.GONE);
+                clearBtn.setVisibility(View.GONE);
                 controller.setSetMode(false);
                 controller.createUserBoard(this,controller);
-               /*controller.clearBoard(this,controller);
+                controller.clearBoard(this,controller);
                 controller.setRandomMode(true);
                 controller.setCompBoard(true);
                 controller.setShipsRandom(this,controller);
                 controller.setRandomMode(false);
                 controller.setCompBoard(false);
-                */
                 break;
+
         }
     }
 
