@@ -20,59 +20,71 @@
         android:soundEffectsEnabled="true"
         android:id="@+id/upperPart"
         android:layout_alignParentStart="true">
-        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/userBoard"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:stretchColumns="*"
-            android:id="@+id/myBoard"
-            >
-        </TableLayout>
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:stretchColumns="*"></RelativeLayout>
 
         <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/topScoresTable"
             android:layout_width="wrap_content"
             android:layout_height="150dp"
-            android:layout_toRightOf="@+id/myBoard"
-            android:stretchColumns="*"
-            android:id="@+id/topScoresTable"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
             android:gravity="end"
-            >
+            android:stretchColumns="*">
 
             <TableRow>
+
                 <TextView
                     style="@style/HeadLines"
                     android:layout_gravity="center"
                     android:text="@string/time" />
             </TableRow>
+
             <TableRow>
+
                 <Chronometer
                     android:id="@+id/chronometer"
                     android:format="%s"
                     android:gravity="center" />
             </TableRow>
+
             <TableRow>
+
                 <TextView
                     style="@style/HeadLines"
                     android:layout_gravity="center"
                     android:text="@string/ships_left" />
             </TableRow>
+
             <TableRow>
+
                 <TextView
+                    android:id="@+id/shipsLeft"
                     android:layout_gravity="center"
-                    android:text="@string/_000"
-                    android:id="@+id/shipsLeft"/>
+                    android:text="@string/_000" />
             </TableRow>
+
             <TableRow>
+
                 <TextView
                     style="@style/HeadLines"
                     android:layout_gravity="center"
                     android:text="@string/com_ships_left" />
             </TableRow>
+
             <TableRow>
+
                 <TextView
+                    android:id="@+id/COMShipsLeft"
                     android:layout_width="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/_000"
-                    android:id="@+id/COMShipsLeft"/>
+                    android:text="@string/_000" />
             </TableRow>
         </TableLayout>
     </LinearLayout>
