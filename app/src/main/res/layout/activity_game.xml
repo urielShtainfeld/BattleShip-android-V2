@@ -32,23 +32,14 @@
         <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/topScoresTable"
             android:layout_width="wrap_content"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:gravity="end"
             android:stretchColumns="*">
-
             <TableRow>
-
-                <TextView
-                    style="@style/HeadLines"
-                    android:layout_gravity="center"
-                    android:text="@string/time" />
-            </TableRow>
-
-            <TableRow>
-
                 <Chronometer
+                    style="@style/HeadLines"
                     android:id="@+id/chronometer"
                     android:format="%s"
                     android:gravity="center" />
@@ -85,6 +76,14 @@
                     android:layout_width="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/_000" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/turn"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    style="@style/HeadLines"
+                    android:text="@string/turn" />
             </TableRow>
         </TableLayout>
     </LinearLayout>

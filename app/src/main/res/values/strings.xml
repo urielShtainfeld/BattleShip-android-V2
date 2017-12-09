@@ -10,4 +10,7 @@
     <string name="com_ships_left">COM Ships left</string>
     <string name="_000">000</string>
     <string name="clear">Clear</string>
+    <string name="turn">turn</string>
+    <string name="yourTurn">Your turn</string>
+    <string name="comTurn">Computer turn</string>
 </resources>
