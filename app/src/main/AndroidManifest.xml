@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/game_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -17,8 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Game" />
-        <activity android:name=".Score" />
-        <activity android:name=".Set_Ships"></activity>
+        <activity android:name=".Score" >
+        </activity>
     </application>
 
 </manifest>

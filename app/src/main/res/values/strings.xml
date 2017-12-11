@@ -13,4 +13,8 @@
     <string name="turn">turn</string>
     <string name="yourTurn">Your turn</string>
     <string name="comTurn">Computer turn</string>
+    <string name="_00_00">00:00</string>
+    <string name="who_win">Who win!</string>
+    <string name="restart">Restart</string>
+    <string name="main_screen">Main screen</string>
 </resources>

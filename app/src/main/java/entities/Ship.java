@@ -1,26 +1,24 @@
 package entities;
 
-
-import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Ship {
     private boolean sink;
     private int size;
     private int noOfHits;
-    //ShipLocation[] locations;
+    private int id;
+    private boolean placed;
+    private static final AtomicInteger counter = new AtomicInteger();
 
     public Ship(int size) {
         this.size = size;
         this.sink = false;
         this.noOfHits = 0;
-        //locations = new ShipLocation[size];
-        // for (ShipLocation location:locations) {
-        //     location = new ShipLocation(-1,-1,false);
-        // }
-    }
-    public void gotHit(int X, int Y){
+        this.placed = false;
+        this.id = counter.getAndIncrement();
 
     }
+
     public int getSize() {
         return size;
     }
@@ -29,28 +27,33 @@ public class Ship {
         this.sink = sink;
     }
 
-    public int getNoOfHits() {
-        return noOfHits;
+    public boolean isSink() {
+        return sink;
     }
 
-    public void setNoOfHits(int noOfHits) {
-        this.noOfHits = noOfHits;
+    public void setNoOfHits() {
+        this.noOfHits++;
+        if (noOfHits == size) {
+            setSink(true);
+        }
     }
 
-    //public ShipLocation[] getLocations() {
-    //    return locations;
-    //}
-
-    //public void setLocations(ShipLocation[] locations) {
-    //    this.locations = locations;
-    //}
-
-    public void clearShip(){
+    public void clearShip() {
         this.sink = false;
         this.noOfHits = 0;
-        //for (ShipLocation location:locations) {
-        //    location.setLocation(-1,-1);
-        //}
+        this.placed = false;
+    }
+
+    public boolean isPlaced() {
+        return placed;
+    }
+
+    public void setPlaced(boolean placed) {
+        this.placed = placed;
+    }
+
+    public int getId() {
+        return id;
     }
 }
 
