@@ -21,14 +21,15 @@ public class HighScores extends SQLiteOpenHelper {
         // The reason of passing null is you want the standard SQLiteCursor behaviour
         super(context, context.getResources().getString(R.string.app_name) + "_db", null, DATABASE_VERSION);
     }
-    private String HIGH_SCORES_TABLE_CREATE(String KEY_WORD, String KEY_DEFINITION) {
-        return "CREATE TABLE " + HIGH_SCORES_TABLE_NAME + " ( " + KEY_WORD + " TEXT PRIMARY KEY, " + KEY_DEFINITION + " TEXT)";
+    private String HIGH_SCORES_TABLE_CREATE(int KEY, String USER_NAME , int SCORE , double LONGITUDE, double LATITUDE) {
+        return "CREATE TABLE " + HIGH_SCORES_TABLE_NAME + " ( " + KEY + " INTEGER PRIMARY KEY, " + USER_NAME + " TEXT, " + SCORE + " INTEGER, "+
+        LONGITUDE +" DOUBLE," + LATITUDE + "DOUBLE)";
     }
 
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(HIGH_SCORES_TABLE_CREATE("Key", "Value"));
+        db.execSQL(HIGH_SCORES_TABLE_CREATE(0, "UserName",0,0,0));
         this.dataBase = db;
     }
 
@@ -48,11 +49,13 @@ public class HighScores extends SQLiteOpenHelper {
     }
 
 
-    public long put(String key, String value) {
+    public long put(int key, String userName,int score,double longitude,double latitude) {
         ContentValues values = new ContentValues();
         values.put("Key", key);
-        values.put("Value", value);
-
+        values.put("user_name", userName);
+        values.put("Score",score);
+        values.put("longitude",longitude);
+        values.put("latitude",latitude);
         return this.put(values);
     }
 
@@ -69,7 +72,7 @@ public class HighScores extends SQLiteOpenHelper {
 
     public Cursor getCursor(String key) {
         SQLiteDatabase database = this.getReadableDatabase();
-        String selectQuery = "SELECT Value FROM " + HIGH_SCORES_TABLE_NAME + " where Key = '" + key + "'"; // Instead of "SELECT * FROM"
+        String selectQuery = "SELECT User_Name,Score,longitude,latitude FROM " + HIGH_SCORES_TABLE_NAME + " where Key = '" + key + "'"; // Instead of "SELECT * FROM"
         Cursor cursor = database.rawQuery(selectQuery, null);
 
         return cursor;
