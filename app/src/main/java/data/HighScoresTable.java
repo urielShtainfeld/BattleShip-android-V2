@@ -1,4 +1,4 @@
-package entities;
+package data;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,12 +12,12 @@ import com.example.ushtinfeld.battleship_uriel.R;
  * Created by ushtinfeld on 06/01/2018.
  */
 
-public class HighScores extends SQLiteOpenHelper {
+public class HighScoresTable extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 2;
     private static final String HIGH_SCORES_TABLE_NAME = "HighScores";
     private SQLiteDatabase dataBase;
 
-    public  HighScores(Context context) {
+    public  HighScoresTable(Context context) {
         // The reason of passing null is you want the standard SQLiteCursor behaviour
         super(context, context.getResources().getString(R.string.app_name) + "_db", null, DATABASE_VERSION);
     }

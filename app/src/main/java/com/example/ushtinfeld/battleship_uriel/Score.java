@@ -1,6 +1,7 @@
 package com.example.ushtinfeld.battleship_uriel;
 
 import android.content.Intent;
+import android.location.Address;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,11 +9,20 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
+import data.ScoreTable;
+
 public class Score extends AppCompatActivity implements View.OnClickListener {
+    private final double UNKNOWN_LONG = 33.356765;
+    private final double UNKNOWN_LAT = 32.487563;
 
     private TextView whoWin;
     private Button restart, mainScreen;
     String level;
+    private ScoreTable table;
+    private int result;
+    private List<Address> addresses = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
