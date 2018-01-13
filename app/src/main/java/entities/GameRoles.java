@@ -35,7 +35,7 @@ public class GameRoles {
         Intent Score = new Intent(game, com.example.ushtinfeld.battleship_uriel.Score.class);
         Score.putExtra("wonOrLose", "WIN");
         Score.putExtra("Level", game.getLevel());
-        Score.putExtra("timer",game.getTime().getText());
+        Score.putExtra("Score",game.getNoOfShots());
         game.startActivity(Score);
         game.finish();
     }

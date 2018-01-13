@@ -23,7 +23,7 @@ import java.util.Locale;
 import data.DataHandler;
 import data.Record;
 import data.ScoreTable;
-
+//TODO: handle data
 public class Score extends AppCompatActivity implements View.OnClickListener {
     private final double UNKNOWN_LONG = 33.356765;
     private final double UNKNOWN_LAT = 32.487563;
@@ -31,8 +31,9 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
     private TextView whoWin;
     private Button restart, mainScreen;
     String level;
+    String time;
+    int score;
     private ScoreTable table;
-    private int result;
     private List<Address> addresses = null;
 
     @Override
@@ -48,7 +49,11 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
         switch (wonOrLose) {
             case "WIN":
                 whoWin.setText("You WIN");
-                if(table.isNewRecord(level,result)) {
+                time = this.getIntent().getStringExtra("Timer");
+                switch (level){
+
+                }
+  /*              if(table.isNewRecord(level,result)) {
                     double longitude = getIntent().getDoubleExtra("long", 500);
                     double latitude = getIntent().getDoubleExtra("lat", 500);
                     if (longitude == 500 || latitude == 500) {
@@ -63,7 +68,7 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
                         addresses = new ArrayList<>();
                     }
                     registerUserWithNewRecord(this);
-                }
+                }*/
                 imagePlace.setBackgroundResource(R.drawable.victory);
                 break;
             case "LOSE":
@@ -138,7 +143,7 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
         else{
             address = UNKONOWN;
         }
-        table.newRecord(new Record(name, result,address, level));
+        table.newRecord(new Record(name, score ,address, level));
         DataHandler.saveScoreBoard(this,table);
     }
 }

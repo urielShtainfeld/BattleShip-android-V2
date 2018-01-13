@@ -1,10 +1,18 @@
 package com.example.ushtinfeld.battleship_uriel;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -13,6 +21,10 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import bound.BoundService;
+import bound.BoundServiceListener;
 import components.Cell;
 import components.CellListener;
 import entities.ComTurn;
@@ -21,23 +33,28 @@ import entities.GameController;
 import entities.GameRoles;
 import entities.Timer;
 
-public class Game extends AppCompatActivity implements CellListener, View.OnClickListener {
+public class Game extends AppCompatActivity implements CellListener, View.OnClickListener, BoundServiceListener {
     public GameController controller;
+    private static final String TAG = Game.class.getSimpleName();
+
     private Button startBtn, randomBtn, clearBtn;
     private Timer timer;
     private android.os.Handler handler, comTurnHandler;
-    private int timeCounter = 0;
+    private int timeCounter = 0,outOfAngelTime = 0;;
     private TextView shipsLeft, comShipsLeft, headerShipsLeft, headerComShipsLeft, turn, time;
     private int numOfShipsLeft, numOfcomShipsLeft;
     private ComTurn comTurn;
     private GameRoles gameRole;
     private TextView[] shipsToPlain;
+    private int noOfShots;
     String level;
+    private BoundService service;
     // TODO: add shots gifs
     // TODO: add get map place
-    // TODO: add balance test
 
     protected void onCreate(Bundle savedInstanceState) {
+        noOfShots = 0;
+        outOfAngelTime = 0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         this.level = this.getIntent().getStringExtra("Level");
@@ -46,7 +63,28 @@ public class Game extends AppCompatActivity implements CellListener, View.OnClic
         controller.initVars(this);
         controller.setRandomMode(false);
         setButtons();
+        boolean bindingSucceeded = bindService(new Intent(this, BoundService.class), serviceConnection, Context.BIND_AUTO_CREATE);
+        Log.d(TAG, "onCreate: " + (bindingSucceeded ? "the binding succeeded..." : "the binding failed!"));
     }
+
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder serviceBinder) {
+            if (serviceBinder instanceof BoundService.ServiceBinder) {
+                setService(((BoundService.ServiceBinder) serviceBinder).getService());
+                service.setListener(Game.this);
+                service.startListening();
+            }
+            Log.d(TAG, "onServiceConnected: " + name);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            setService(null);
+            Log.d(TAG, "onServiceDisconnected: " + name);
+        }
+    };
 
     private void setButtons() {
         startBtn = (Button) findViewById(R.id.Start);
@@ -100,6 +138,7 @@ public class Game extends AppCompatActivity implements CellListener, View.OnClic
             int row = cell.getRow();
             if (controller.handelHit(col, row, this)) {
                 computerTurn();
+                noOfShots +=1;
             }
 
         }
@@ -183,6 +222,9 @@ public class Game extends AppCompatActivity implements CellListener, View.OnClic
         timer.start();
     }
 
+    public int getNoOfShots() {
+        return noOfShots;
+    }
     public TextView getShipsLeft() {
         return shipsLeft;
     }
@@ -251,5 +293,42 @@ public class Game extends AppCompatActivity implements CellListener, View.OnClic
         return startBtn;
     }
 
+    public void setService(BoundService service) {
+        if (service != null) {
+            this.service = service;
+            service.setListener(this);
+            service.startListening();
+        }
+        else {
+            if (this.service != null) {
+                this.service.setListener(null);
+            }
+            this.service = null;
+        }
+    }
+    @Override
+    public void onAngelChange(boolean isRecovering) {
+        if(isRecovering)
+            this.outOfAngelTime = 0;
+        else{
+            this.outOfAngelTime++;
+            if(this.outOfAngelTime > 1000){
+                AlertDialog.Builder notSameColRowAlert = new AlertDialog.Builder(this);
+                notSameColRowAlert.setMessage("You sholdn't move, \n turn move to computer");
+                notSameColRowAlert.setTitle("Oops...");
+                notSameColRowAlert.setPositiveButton("OK", null);
+                notSameColRowAlert.setCancelable(true);
+                notSameColRowAlert.create().show();
+                notSameColRowAlert.setPositiveButton("Ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+                computerTurn();
+                outOfAngelTime = 0;
+
+            }
+        }
+    }
 
 }

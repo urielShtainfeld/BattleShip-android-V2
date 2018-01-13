@@ -29,6 +29,7 @@ public class GameController {
     private static final int[] EASY_SHIPS_SIZES = {3, 4, 5};
     private static final int[] MEDIUM_SHIPS_SIZES = {2, 3, 4, 5};
     private static final int[] HARD_SHIPS_SIZES = {2, 3, 4, 5, 6};
+
     private int boardSize;
     private LinearLayout setRowsLayout;
     private LinearLayout setColsLayout;
@@ -718,7 +719,7 @@ public class GameController {
                     if (game.getNumOfcomShipsLeft() == 0) {
                         game.getGameRole().victory(game);
                     } else {
-                        /*final Dialog builder = new Dialog(game);
+                        final Dialog builder = new Dialog(game);
                         builder.requestWindowFeature(Window.FEATURE_SWIPE_TO_DISMISS);
                         builder.getWindow().setBackgroundDrawable(
                                 new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -734,13 +735,13 @@ public class GameController {
                                 ViewGroup.LayoutParams.MATCH_PARENT,
                                 ViewGroup.LayoutParams.MATCH_PARENT));
                         builder.setCancelable(true);
-                        builder.show();*/
-                        TranslateAnimation animation = new TranslateAnimation(0, 0, 0, 2000);
+                        builder.show();
+                        /*TranslateAnimation animation = new TranslateAnimation(0, 0, 0, 2000);
                         animation.setDuration(1000);
                         animation.setFillAfter(false);
                         animation.setAnimationListener(new UserAnimationListener());
 
-                        this.getSetTable().startAnimation(animation);
+                        this.getSetTable().startAnimation(animation);*/
                     }
                 }
             } else {
