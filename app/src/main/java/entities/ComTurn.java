@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import com.example.ushtinfeld.battleship_uriel.Game;
 import com.example.ushtinfeld.battleship_uriel.R;
 
+// TODO: add AI
 public class ComTurn extends Thread implements Runnable {
     Handler handler;
     Game game;

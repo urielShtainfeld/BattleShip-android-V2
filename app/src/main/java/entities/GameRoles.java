@@ -35,6 +35,7 @@ public class GameRoles {
         Intent Score = new Intent(game, com.example.ushtinfeld.battleship_uriel.Score.class);
         Score.putExtra("wonOrLose", "WIN");
         Score.putExtra("Level", game.getLevel());
+        Score.putExtra("timer",game.getTime().getText());
         game.startActivity(Score);
         game.finish();
     }
@@ -42,7 +43,6 @@ public class GameRoles {
     public void lose(Game game) {
         Intent Score = new Intent(game, com.example.ushtinfeld.battleship_uriel.Score.class);
         Score.putExtra("wonOrLose", "LOSE");
-        Score.putExtra("timer", game.getTime().getText());
         game.startActivity(Score);
         game.finish();
     }

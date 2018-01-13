@@ -33,12 +33,6 @@ public class ScoresMapFragment extends Fragment implements OnMapReadyCallback {
     private MarkerOptions userMarker;
     private MapListener listener;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-
-
     public ScoresMapFragment() {
         // Required empty public constructor
 

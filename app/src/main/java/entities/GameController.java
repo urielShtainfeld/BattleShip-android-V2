@@ -10,6 +10,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -32,7 +34,7 @@ public class GameController {
     private LinearLayout setColsLayout;
     private Cell[][] setBoard;
     private Cell[][] userBoard;
-    private RelativeLayout setTable;
+    public RelativeLayout setTable;
     private RelativeLayout userTable;
     private boolean setMode;
     private boolean randomMode;
@@ -716,7 +718,7 @@ public class GameController {
                     if (game.getNumOfcomShipsLeft() == 0) {
                         game.getGameRole().victory(game);
                     } else {
-                        final Dialog builder = new Dialog(game);
+                        /*final Dialog builder = new Dialog(game);
                         builder.requestWindowFeature(Window.FEATURE_SWIPE_TO_DISMISS);
                         builder.getWindow().setBackgroundDrawable(
                                 new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -732,7 +734,13 @@ public class GameController {
                                 ViewGroup.LayoutParams.MATCH_PARENT,
                                 ViewGroup.LayoutParams.MATCH_PARENT));
                         builder.setCancelable(true);
-                        builder.show();
+                        builder.show();*/
+                        TranslateAnimation animation = new TranslateAnimation(0, 0, 0, 2000);
+                        animation.setDuration(1000);
+                        animation.setFillAfter(false);
+                        animation.setAnimationListener(new UserAnimationListener());
+
+                        this.getSetTable().startAnimation(animation);
                     }
                 }
             } else {
@@ -777,5 +785,22 @@ public class GameController {
 
     public int[] getShipsSizes() {
         return this.shipsSizes;
+    }
+    private class UserAnimationListener implements Animation.AnimationListener{
+
+        @Override
+        public void onAnimationEnd(Animation animation) {
+            setTable.clearAnimation();
+            setTable.setVisibility(View.INVISIBLE);
+        }
+
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+        }
+
+        @Override
+        public void onAnimationStart(Animation animation) {
+        }
+
     }
 }

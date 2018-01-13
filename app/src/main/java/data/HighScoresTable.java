@@ -21,15 +21,15 @@ public class HighScoresTable extends SQLiteOpenHelper {
         // The reason of passing null is you want the standard SQLiteCursor behaviour
         super(context, context.getResources().getString(R.string.app_name) + "_db", null, DATABASE_VERSION);
     }
-    private String HIGH_SCORES_TABLE_CREATE(int KEY, String USER_NAME , int SCORE , double LONGITUDE, double LATITUDE) {
-        return "CREATE TABLE " + HIGH_SCORES_TABLE_NAME + " ( " + KEY + " INTEGER PRIMARY KEY, " + USER_NAME + " TEXT, " + SCORE + " INTEGER, "+
+    private String HIGH_SCORES_TABLE_CREATE(int KEY, String USER_NAME , String SCORE , double LONGITUDE, double LATITUDE) {
+        return "CREATE TABLE " + HIGH_SCORES_TABLE_NAME + " ( " + KEY + " INTEGER PRIMARY KEY, " + USER_NAME + " TEXT, " + SCORE + " TEXT, "+
         LONGITUDE +" DOUBLE," + LATITUDE + "DOUBLE)";
     }
 
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(HIGH_SCORES_TABLE_CREATE(0, "UserName",0,0,0));
+        db.execSQL(HIGH_SCORES_TABLE_CREATE(0, "UserName","",0,0));
         this.dataBase = db;
     }
 
@@ -49,7 +49,7 @@ public class HighScoresTable extends SQLiteOpenHelper {
     }
 
 
-    public long put(int key, String userName,int score,double longitude,double latitude) {
+    public long put(int key, String userName,String score,double longitude,double latitude) {
         ContentValues values = new ContentValues();
         values.put("Key", key);
         values.put("user_name", userName);
