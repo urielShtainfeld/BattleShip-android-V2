@@ -11,7 +11,7 @@ public class ScoreTable {
     private static String EASY = "easy";
     private static String MEDIUM = "medium";
     private static String HARD = "hard";
-    private static int MAX_LENGTH = 3;
+    private static int MAX_LENGTH = 10;
     private ArrayList<Record> hardLevel, mediumLevel, easyLevel;
     public ScoreTable(){
         hardLevel  = new ArrayList<>();
@@ -52,13 +52,13 @@ public class ScoreTable {
 
 
 
-    public boolean isNewRecord(String level, int time){
+    public boolean isNewRecord(String level, int result){
         if(level.equals(EASY))
-            return checkForRecord(time, this.easyLevel);
+            return checkForRecord(result, this.easyLevel);
         if(level.equals(MEDIUM))
-            return checkForRecord(time, this.mediumLevel);
+            return checkForRecord(result, this.mediumLevel);
         if(level.equals(HARD))
-            return checkForRecord(time,this.hardLevel);
+            return checkForRecord(result,this.hardLevel);
         return  false;
     }
 
@@ -69,11 +69,11 @@ public class ScoreTable {
         Collections.sort(table);
     }
 
-    private boolean checkForRecord(int time, ArrayList<Record> table) {
+    private boolean checkForRecord(int result, ArrayList<Record> table) {
         if(table.size()<MAX_LENGTH)
             return true;
         for(Record ro : table)
-            if(ro.getScore()>time)
+            if(ro.getScore()>result)
                 return true;
         return  false;
     }

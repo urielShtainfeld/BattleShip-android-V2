@@ -17,4 +17,8 @@
     <string name="who_win">Who win!</string>
     <string name="restart">Restart</string>
     <string name="main_screen">Main screen</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_settings">settings</string>
+    <string name="score_table">Score table</string>
 </resources>

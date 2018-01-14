@@ -53,6 +53,16 @@
             android:text="@string/hard"
             android:layout_marginTop="20dp"
             android:textStyle="bold"/>
+        <Button
+            android:id="@+id/Scores"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#b195c0d3"
+            android:backgroundTint="#ec517281"
+            android:text="@string/score_table"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentBottom="true"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 </RelativeLayout>

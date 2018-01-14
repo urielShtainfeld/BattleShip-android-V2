@@ -8,11 +8,10 @@ public class Record implements Comparable<Record>{
 
     private String userName;
     private int score;
-    private String location;
-
-
+    double longitude;
+    double latitude;
     private String level;
-
+    private int place;
 
     public String getUserName() {
         return userName;
@@ -30,33 +29,44 @@ public class Record implements Comparable<Record>{
         this.score = score;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
     public String getLevel() {
         return level;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public Record(String userName, int score, String location, String level) {
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Record(String userName, int score, double longitude, double latitude, String level, int place) {
 
         this.userName = userName;
         this.score = score;
-        this.location = location;
+        this.longitude = longitude;
+        this.latitude = latitude;
         this.level = level;
+        this.place = place;
     }
 
     @Override
     public String toString() {
         return
+                "place:"+place+'\''+
                 "userName: " + userName + '\'' +
-                        ", time: " + score +
-                        ", location: " + location + '\'' +
-                        ", level: " + level
+                ", time: " + score +
+                ", location: " + latitude+","+longitude + '\'' +
+                ", level: " + level
                 ;
     }
 

@@ -23,6 +23,8 @@ import java.util.Locale;
 import data.DataHandler;
 import data.Record;
 import data.ScoreTable;
+import entities.GameController;
+
 //TODO: handle data
 public class Score extends AppCompatActivity implements View.OnClickListener {
     private final double UNKNOWN_LONG = 33.356765;
@@ -31,8 +33,7 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
     private TextView whoWin;
     private Button restart, mainScreen;
     String level;
-    String time;
-    int score;
+    int result,place;
     private ScoreTable table;
     private List<Address> addresses = null;
 
@@ -49,17 +50,22 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
         switch (wonOrLose) {
             case "WIN":
                 whoWin.setText("You WIN");
-                time = this.getIntent().getStringExtra("Timer");
-                switch (level){
+                result = this.getIntent().getIntExtra("Score",0);
+                switch (level) {
+                    case "EASY":
+                        result =100-(result-GameController.EASY_MIN_HITS);
+                        break;
+                    case "MEDIUM":
+                        result =100-(result-GameController.MEDIUM_MIN_HITS);
+                        break;
+                    case "HARD":
+                        result =100-(result-GameController.HARD_MIN_HITS);
+                        break;
 
                 }
-  /*              if(table.isNewRecord(level,result)) {
-                    double longitude = getIntent().getDoubleExtra("long", 500);
-                    double latitude = getIntent().getDoubleExtra("lat", 500);
-                    if (longitude == 500 || latitude == 500) {
-                        longitude = UNKNOWN_LONG;
-                        latitude = UNKNOWN_LAT;
-                    }
+                if(table.isNewRecord(level,result)) {
+                    double longitude = UNKNOWN_LONG;
+                    double latitude = UNKNOWN_LAT;
                     Geocoder geocoder;
                     geocoder = new Geocoder(this, Locale.getDefault());
                     try {
@@ -68,7 +74,7 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
                         addresses = new ArrayList<>();
                     }
                     registerUserWithNewRecord(this);
-                }*/
+                }
                 imagePlace.setBackgroundResource(R.drawable.victory);
                 break;
             case "LOSE":
@@ -143,7 +149,7 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
         else{
             address = UNKONOWN;
         }
-        table.newRecord(new Record(name, score ,address, level));
+        table.newRecord(new Record(name, result ,addresses.get(0).getLongitude(),addresses.get(0).getLatitude(), level,place));
         DataHandler.saveScoreBoard(this,table);
     }
 }

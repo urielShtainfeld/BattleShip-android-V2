@@ -52,9 +52,9 @@ public class ScoresMapFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_scores_map, container, false);
         SupportMapFragment supportmapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_scores_map_layout);
-        Fragment fr =  getChildFragmentManager().findFragmentById(R.id.fragment_scores_map_layout);
         supportmapFragment.getMapAsync(this);
-        return inflater.inflate(R.layout.fragment_scores_map, container, false);
+
+        return view;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class ScoresMapFragment extends Fragment implements OnMapReadyCallback {
             double latitude;
             double longitude;
             try{
-                addresses = geocoder.getFromLocationName(r.getLocation(), 1);
+                addresses = geocoder.getFromLocation(r.getLatitude(),r.getLongitude(),1);
                 if(addresses.size() > 0) {
                     latitude = addresses.get(0).getLatitude();
                     longitude = addresses.get(0).getLongitude();

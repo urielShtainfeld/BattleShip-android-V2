@@ -50,7 +50,6 @@ public class Game extends AppCompatActivity implements CellListener, View.OnClic
     String level;
     private BoundService service;
     // TODO: add shots gifs
-    // TODO: add get map place
 
     protected void onCreate(Bundle savedInstanceState) {
         noOfShots = 0;

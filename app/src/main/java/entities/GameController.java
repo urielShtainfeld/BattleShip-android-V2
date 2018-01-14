@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -29,6 +28,9 @@ public class GameController {
     private static final int[] EASY_SHIPS_SIZES = {3, 4, 5};
     private static final int[] MEDIUM_SHIPS_SIZES = {2, 3, 4, 5};
     private static final int[] HARD_SHIPS_SIZES = {2, 3, 4, 5, 6};
+    public static final int HARD_MIN_HITS = 20;
+    public static final int MEDIUM_MIN_HITS = 14;
+    public static final int EASY_MIN_HITS = 12;
 
     private int boardSize;
     private LinearLayout setRowsLayout;
