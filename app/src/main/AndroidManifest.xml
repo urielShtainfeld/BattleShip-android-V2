@@ -23,6 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service android:name="bound.BoundService"></service>
+        <provider android:name=".data.DataHandler" android:authorities="com.ustinfeld.battleship_uriel.provider" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,5 +43,6 @@
 
         <activity android:name=".ScoreScreen" />
     </application>
+
 
 </manifest>

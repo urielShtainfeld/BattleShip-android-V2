@@ -41,6 +41,12 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
+        try {
+            table = new ScoreTable();//table = DataHandler.getData(this);
+        }
+        catch (Exception e){
+            table = new ScoreTable();
+        }
         String wonOrLose = this.getIntent().getStringExtra("wonOrLose");
         this.level = this.getIntent().getStringExtra("Level");
         RelativeLayout imagePlace = (RelativeLayout) this.findViewById(R.id.imageWhoWin);
@@ -143,13 +149,12 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
         builder.show();
     }
     public void saveRecord(String name){
-        String address;
         if(addresses.size()>0)
-            address = addresses.get(0).getAddressLine(0);
+            table.newRecord(new Record(name, result ,addresses.get(0).getLongitude(),addresses.get(0).getLatitude(), level,place));
         else{
-            address = UNKONOWN;
+            table.newRecord(new Record(name, result ,UNKNOWN_LONG,UNKNOWN_LAT, level,place));
         }
-        table.newRecord(new Record(name, result ,addresses.get(0).getLongitude(),addresses.get(0).getLatitude(), level,place));
+
         DataHandler.saveScoreBoard(this,table);
     }
 }

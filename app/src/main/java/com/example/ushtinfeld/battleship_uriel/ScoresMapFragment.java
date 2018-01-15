@@ -62,10 +62,10 @@ public class ScoresMapFragment extends Fragment implements OnMapReadyCallback {
         myMap = googleMap;
         ScoreTable st;
         try{
-            st = DataHandler.getData(getContext());
+            //st = DataHandler.getData(getContext());
         }
         catch (Exception e){
-            st = new ScoreTable();
+            //st = new ScoreTable();
         }
         ArrayList<Record> scores = st.getScoreTable();
         for(Record r :scores ){

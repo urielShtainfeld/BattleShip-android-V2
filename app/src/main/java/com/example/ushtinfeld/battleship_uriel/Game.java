@@ -64,8 +64,13 @@ public class Game extends AppCompatActivity implements CellListener, View.OnClic
         setButtons();
         boolean bindingSucceeded = bindService(new Intent(this, BoundService.class), serviceConnection, Context.BIND_AUTO_CREATE);
         Log.d(TAG, "onCreate: " + (bindingSucceeded ? "the binding succeeded..." : "the binding failed!"));
+
     }
 
+
+    public ServiceConnection getServiceConnection() {
+        return serviceConnection;
+    }
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -147,7 +152,9 @@ public class Game extends AppCompatActivity implements CellListener, View.OnClic
         turn.setText(R.string.comTurn);
         turn.setTextColor(Color.RED);
         setAllButtons(false);
-        comTurnHandler.postDelayed(comTurn, (long) (Math.random() * 4000 + 1500));
+        //TODO: uncomment
+        // comTurnHandler.postDelayed(comTurn, (long) (Math.random() * 4000 + 1500));
+        comTurnHandler.post(comTurn);
     }
 
     public void setAllButtons(boolean b) {
@@ -330,4 +337,7 @@ public class Game extends AppCompatActivity implements CellListener, View.OnClic
         }
     }
 
+    public BoundService getService() {
+        return service;
+    }
 }

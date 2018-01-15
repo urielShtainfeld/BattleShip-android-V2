@@ -27,7 +27,7 @@ public class highScoresFragment extends android.support.v4.app.Fragment {
         View view = inflater.inflate(R.layout.fragment_highscores_list, container, false);
         ScoreTable table;
         try{
-            table = DataHandler.getData(getContext());
+            table =  new ScoreTable();//DataHandler.getData(getContext());
         }
         catch(Exception e){
             table = new ScoreTable();

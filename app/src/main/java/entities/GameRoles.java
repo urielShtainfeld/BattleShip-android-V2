@@ -37,6 +37,7 @@ public class GameRoles {
         Score.putExtra("Level", game.getLevel());
         Score.putExtra("Score",game.getNoOfShots());
         game.startActivity(Score);
+        game.unbindService(game.getServiceConnection());
         game.finish();
     }
 

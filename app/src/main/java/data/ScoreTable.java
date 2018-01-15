@@ -8,9 +8,9 @@ import java.util.Collections;
  */
 
 public class ScoreTable {
-    private static String EASY = "easy";
-    private static String MEDIUM = "medium";
-    private static String HARD = "hard";
+    private static String EASY = "EASY";
+    private static String MEDIUM = "MEDIUM";
+    private static String HARD = "HARD";
     private static int MAX_LENGTH = 10;
     private ArrayList<Record> hardLevel, mediumLevel, easyLevel;
     public ScoreTable(){

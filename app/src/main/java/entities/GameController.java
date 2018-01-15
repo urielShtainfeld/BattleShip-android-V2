@@ -738,12 +738,6 @@ public class GameController {
                                 ViewGroup.LayoutParams.MATCH_PARENT));
                         builder.setCancelable(true);
                         builder.show();
-                        /*TranslateAnimation animation = new TranslateAnimation(0, 0, 0, 2000);
-                        animation.setDuration(1000);
-                        animation.setFillAfter(false);
-                        animation.setAnimationListener(new UserAnimationListener());
-
-                        this.getSetTable().startAnimation(animation);*/
                     }
                 }
             } else {
