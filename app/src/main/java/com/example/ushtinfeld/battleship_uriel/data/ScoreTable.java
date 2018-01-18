@@ -73,7 +73,7 @@ public class ScoreTable {
         if(table.size()<MAX_LENGTH)
             return true;
         for(Record ro : table)
-            if(ro.getScore()>result)
+            if(ro.getScore()<result)
                 return true;
         return  false;
     }

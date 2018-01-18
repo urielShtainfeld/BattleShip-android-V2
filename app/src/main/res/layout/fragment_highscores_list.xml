@@ -4,14 +4,12 @@
     android:layout_height="match_parent"
     tools:context="com.example.ushtinfeld.battleship_uriel.highScoresFragment">
 
-
     <ListView
         android:id="@+id/listViewScores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="fill"
-        android:background="#80b5e5e3"
-        />
+        android:background="#80b5e5e3" />
 
 
 </FrameLayout>

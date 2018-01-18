@@ -1,16 +1,18 @@
 package entities;
 
-
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.BounceInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,6 +23,7 @@ import com.example.ushtinfeld.battleship_uriel.Game;
 import com.example.ushtinfeld.battleship_uriel.R;
 
 import components.Cell;
+
 
 public class GameController {
     private static final int HARD_BOARD_SIZE = 10;
@@ -39,7 +42,7 @@ public class GameController {
     private Cell[][] setBoard;
     private Cell[][] userBoard;
     public RelativeLayout setTable;
-    private RelativeLayout userTable,animationPlace;
+    private RelativeLayout userTable, animationPlace;
     private boolean setMode;
     private boolean randomMode;
     private boolean compBoard;
@@ -712,6 +715,15 @@ public class GameController {
         if (!this.getSetBoard()[col][row].isGotHit()) {
             this.getSetBoard()[col][row].setGotHit(true);
             if (this.getSetBoard()[col][row].isGotShip()) {
+
+                AnimationSet as = new AnimationSet(true);
+                as.setFillEnabled(true);
+                as.setInterpolator(new BounceInterpolator());
+                TranslateAnimation ta2 = new TranslateAnimation(100, 100, 0, 0);
+                ta2.setDuration(2000);
+                as.addAnimation(ta2);
+                as.setDuration(1500);
+                as.start();
                 this.getSetBoard()[col][row].setBackgroundResource(R.drawable.box_grey_ship_hit);
                 Ship hitedShip = game.controller.getShipById(game.controller.getSetBoard()[col][row].getShipID(), game.controller.getComShips());
                 hitedShip.setNoOfHits();
@@ -728,9 +740,10 @@ public class GameController {
                         builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
                             @Override
                             public void onDismiss(DialogInterface dialogInterface) {
-                                //nothing;
+
                             }
                         });
+
                         ImageView imageView = new ImageView(game);
                         imageView.setImageResource(R.drawable.victory_smiley);
                         builder.addContentView(imageView, new RelativeLayout.LayoutParams(
@@ -738,19 +751,25 @@ public class GameController {
                                 ViewGroup.LayoutParams.MATCH_PARENT));
                         builder.setCancelable(true);
                         builder.show();
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        builder.dismiss();
-                        /*TranslateAnimation animation = new TranslateAnimation(0, 0, 0, 2000);
-                        animation.setDuration(3000);
-                        animation.setFillAfter(false);
-                        animation.setAnimationListener(new UserAnimationListener());
 
-                        this.getAnimationPlace().startAnimation(animation);*/
+
+                        new CountDownTimer(1000, 1000) {
+                            @Override
+                            public void onTick(long millisUntilFinished) {
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                builder.dismiss();
+                            }
+                        }.start();
+
                     }
+                } else {
+                    /*long x = 1000;
+                    new ParticleSystem((Activity)game, 10, R.color.red, x)
+                            .setSpeedRange(0.2f, 0.5f)
+                            .oneShot(setTable, 10);*/
                 }
             } else {
                 this.getSetBoard()[col][row].setBackgroundResource(R.drawable.box_grey_ship_miss);
@@ -802,7 +821,7 @@ public class GameController {
         return this.shipsSizes;
     }
 
-    private class UserAnimationListener implements Animation.AnimationListener{
+    private class UserAnimationListener implements Animation.AnimationListener {
 
         @Override
         public void onAnimationEnd(Animation animation) {

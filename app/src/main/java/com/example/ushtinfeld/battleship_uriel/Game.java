@@ -56,8 +56,6 @@ public class Game extends AppCompatActivity implements CellListener, View.OnClic
     private boolean GameStarted;
     private boolean CompTurn;
 
-    // TODO: add shots gifs
-
     protected void onCreate(Bundle savedInstanceState) {
         noOfShots = 0;
         outOfAngelTime = 0;
@@ -161,9 +159,8 @@ public class Game extends AppCompatActivity implements CellListener, View.OnClic
         turn.setText(R.string.comTurn);
         turn.setTextColor(Color.RED);
         setAllButtons(false);
-        //TODO: uncomment
-        // comTurnHandler.postDelayed(comTurn, (long) (Math.random() * 4000 + 1500));
-        comTurnHandler.post(comTurn);
+        comTurnHandler.postDelayed(comTurn, (long) (Math.random() * 4000 + 1500));
+
     }
 
     public void setAllButtons(boolean b) {

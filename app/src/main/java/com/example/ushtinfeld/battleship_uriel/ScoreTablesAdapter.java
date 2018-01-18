@@ -10,7 +10,7 @@ public class ScoreTablesAdapter extends FragmentStatePagerAdapter {
     private ScoresMapFragment map;
     private highScoresFragment scoresListView;
 
-    public ScoreTablesAdapter(FragmentManager fm , ScoresMapFragment map , highScoresFragment scoresListView) {
+    public ScoreTablesAdapter(FragmentManager fm, ScoresMapFragment map, highScoresFragment scoresListView) {
         super(fm);
         this.map = map;
         this.scoresListView = scoresListView;
@@ -30,12 +30,12 @@ public class ScoreTablesAdapter extends FragmentStatePagerAdapter {
     }
 
     @Override
-    public int getCount () {
+    public int getCount() {
         return 2;
     }
 
     @Override
-    public CharSequence getPageTitle ( int position){
+    public CharSequence getPageTitle(int position) {
         if (position == 0)
             return ("Score Table");
         else

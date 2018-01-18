@@ -1,5 +1,7 @@
 package com.example.ushtinfeld.battleship_uriel.data;
 
+import java.util.logging.Level;
+
 /**
  * Created by ushtinfeld on 12/01/2018.
  */
@@ -62,18 +64,16 @@ public class Record implements Comparable<Record>{
     @Override
     public String toString() {
         return
-                "place:"+place+'\''+
-                "userName: " + userName + '\'' +
-                ", time: " + score +
-                ", location: " + latitude+","+longitude + '\'' +
-                ", level: " + level
-                ;
+                place+".  "+
+                "userName: " + userName + "  " +
+                "score: " + score+ "  " +
+                "level: "+ level;
     }
 
     @Override
     public int compareTo(Record record) {
         if(this.getLevel().equals(record.getLevel()))
-            return this.getScore()-record.getScore();
+            return record.getScore()-this.getScore();
         if(this.getLevel().equals("hard"))
             return -1;
         else if(this.getLevel().equals("medium")){

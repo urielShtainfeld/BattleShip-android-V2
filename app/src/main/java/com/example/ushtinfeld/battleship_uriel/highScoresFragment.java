@@ -34,7 +34,9 @@ public class highScoresFragment extends android.support.v4.app.Fragment {
         }
         recordList = new ArrayList<>();
         ArrayList<Record> records;
+        table.sortTables();
         records = table.getScoreTable();
+
         for (Record ro : records){
             try{
                 recordList.add(ro.toString());
@@ -46,6 +48,7 @@ public class highScoresFragment extends android.support.v4.app.Fragment {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,
                 recordList);
         listView.setAdapter(arrayAdapter);
+
         return view;
     }
 

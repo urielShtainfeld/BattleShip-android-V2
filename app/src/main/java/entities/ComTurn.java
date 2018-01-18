@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -13,7 +14,6 @@ import android.widget.RelativeLayout;
 import com.example.ushtinfeld.battleship_uriel.Game;
 import com.example.ushtinfeld.battleship_uriel.R;
 
-// TODO: add AI
 public class ComTurn extends Thread implements Runnable {
     Handler handler;
     Game game;
@@ -21,7 +21,9 @@ public class ComTurn extends Thread implements Runnable {
     public ComTurn(Handler handler, Game game) {
         this.handler = handler;
         this.game = game;
+
     }
+
 
     public void run() {
         int row = (int) (Math.random() * game.controller.getBoardSize());
@@ -39,7 +41,7 @@ public class ComTurn extends Thread implements Runnable {
                         game.getGameRole().lose(game);
                     }
 
-                    Dialog builder = new Dialog(game);
+                    final Dialog builder = new Dialog(game);
                     builder.requestWindowFeature(Window.FEATURE_SWIPE_TO_DISMISS);
                     builder.getWindow().setBackgroundDrawable(
                             new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -56,15 +58,29 @@ public class ComTurn extends Thread implements Runnable {
                             ViewGroup.LayoutParams.MATCH_PARENT));
                     builder.setCancelable(true);
                     builder.show();
+                    new CountDownTimer(1000, 1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            builder.dismiss();
+                        }
+                    }.start();
                 }
             } else {
                 game.controller.getUserBoard()[col][row].setBackgroundResource(R.drawable.green15x15);
             }
         }
+
+
         game.getTurn().setText(R.string.yourTurn);
         game.getTurn().setTextColor(Color.GREEN);
         game.setAllButtons(true);
 
     }
+
+
 }
 

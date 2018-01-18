@@ -17,4 +17,51 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem" />
+
+    <LinearLayout
+        android:id="@+id/levelsButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/content"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:outlineProvider="bounds"
+        android:soundEffectsEnabled="true"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/EasyScores"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="16dp"
+            android:background="#b195c0d3"
+            android:backgroundTint="#ec517281"
+            android:text="@string/start"
+            android:textColor="@color/yellow" />
+
+        <Button
+            android:id="@+id/MediumScores"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="16dp"
+            android:background="#b195c0d3"
+            android:backgroundTint="#ec517281"
+            android:text="@string/random"
+            android:textColor="@color/yellow" />
+
+        <Button
+            android:id="@+id/HardScores"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="16dp"
+            android:background="#b195c0d3"
+            android:backgroundTint="#ec517281"
+            android:text="@string/clear"
+            android:textColor="@color/yellow" />
+    </LinearLayout>
+
 </LinearLayout>
