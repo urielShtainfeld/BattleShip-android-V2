@@ -1,4 +1,4 @@
-package data;
+package com.example.ushtinfeld.battleship_uriel.data;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -15,17 +15,29 @@ import java.util.ArrayList;
  */
 
 public class HighScoresTable extends SQLiteOpenHelper {
+
+    private static HighScoresTable sSoleInstance;
+
+
+
+    public static HighScoresTable getInstance(Context context){
+        if (sSoleInstance == null){ //if there is no instance available... create new one
+            sSoleInstance = new HighScoresTable(context);
+        }
+        return sSoleInstance;
+    }
     private static final int DATABASE_VERSION = 3;
-    private static final String HIGH_SCORES_TABLE_NAME = "HighScores";
+    public static final String HIGH_SCORES_TABLE_NAME = "HighScores"
+            ;
     private SQLiteDatabase dataBase;
 
-    public  HighScoresTable(Context context) {
+    private  HighScoresTable(Context context) {
         // The reason of passing null is you want the standard SQLiteCursor behaviour
-        super(context, context.getResources().getString(R.string.app_name) + "_db", null, DATABASE_VERSION);
+        super(context, context.getResources().getString(R.string.app_name) + ".db", null, DATABASE_VERSION);
     }
     private String HIGH_SCORES_TABLE_CREATE(String KEY, String USER_NAME , String SCORE , String LONGITUDE, String LATITUDE,String LEVEL) {
-        return "CREATE TABLE " + HIGH_SCORES_TABLE_NAME + " ( " + KEY + " INTEGER PRIMARY KEY, " + USER_NAME + " TEXT, " + SCORE + " INTEGER, "+
-        LONGITUDE +" DOUBLE," + LATITUDE + "DOUBLE,"+LEVEL+"TEXT)";
+        return "CREATE TABLE IF NOT EXISTS " + HIGH_SCORES_TABLE_NAME + "(" + KEY + " INTEGER PRIMARY KEY, " + USER_NAME + " TEXT, " + SCORE + " INTEGER, "+
+        LONGITUDE +" DOUBLE," + LATITUDE + " DOUBLE,"+LEVEL+" TEXT)";
     }
 
 
@@ -113,6 +125,8 @@ public class HighScoresTable extends SQLiteOpenHelper {
     }
     public ArrayList<Record> getArrayList(String level) {
 
+        dataBase = this.getReadableDatabase();
+
         ArrayList<Record> recList = null;
 
         Cursor cursor = null;
@@ -120,22 +134,23 @@ public class HighScoresTable extends SQLiteOpenHelper {
             String query = "";
             switch (level){
                 case "EASY":
-                    query = "SELECT  * from  FROM " + HIGH_SCORES_TABLE_NAME + "WHERE Key = (SELECT MAX(Key)  FROM TABLE) AND Key<11;";
+                    query = "SELECT  *  FROM " + HIGH_SCORES_TABLE_NAME + " WHERE Key <11";// (SELECT MAX(Key)  FROM " + HIGH_SCORES_TABLE_NAME +");";// " WHERE  Key<11);";
                     break;
                 case "MEDIUM":
-                    query = "SELECT  * from  FROM " + HIGH_SCORES_TABLE_NAME + "WHERE Key = (SELECT MAX(Key)  FROM TABLE) AND Key<21 AND Key>10;";
+                    query = "SELECT  *  FROM " + HIGH_SCORES_TABLE_NAME + " WHERE  Key<21 AND Key>10"; //WHERE Key = (SELECT MAX(Key)  FROM " + HIGH_SCORES_TABLE_NAME + " WHERE  Key<21 AND Key>10);";
                     break;
                 case "HARD":
-                    query = "SELECT  * from  FROM " + HIGH_SCORES_TABLE_NAME + "WHERE Key = (SELECT MAX(Key)  FROM TABLE) AND Key>20;";
+                    query = "SELECT  *  FROM " + HIGH_SCORES_TABLE_NAME + " WHERE Key>20";//" WHERE Key = (SELECT MAX(Key)  FROM " + HIGH_SCORES_TABLE_NAME +" WHERE Key>20);";
                     break;
             }
             //your query here
             cursor = dataBase.rawQuery(query,null);
             if (cursor != null && cursor.moveToFirst()) {
                 recList = new ArrayList<Record>();
-                do {recList.add(new Record(cursor.getString(2),cursor.getInt(3),cursor.getDouble(4),cursor.getDouble(5),
-                        cursor.getString(5),cursor.getInt(6)));
-
+                do {recList.add(new Record(cursor.getString(1),cursor.getInt(2),cursor.getDouble(3),cursor.getDouble(4),
+                        cursor.getString(5),cursor.getInt(0)));
+                //String KEY, String USER_NAME , String SCORE , String LONGITUDE, String LATITUDE,String LEVEL
+                //Record(String userName, int score, double longitude, double latitude, String level, int place)
                    // namesList.add(cursor.getString(0));
                 } while (cursor.moveToNext());
             }

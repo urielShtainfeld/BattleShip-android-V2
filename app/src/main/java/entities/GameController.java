@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -38,7 +39,7 @@ public class GameController {
     private Cell[][] setBoard;
     private Cell[][] userBoard;
     public RelativeLayout setTable;
-    private RelativeLayout userTable;
+    private RelativeLayout userTable,animationPlace;
     private boolean setMode;
     private boolean randomMode;
     private boolean compBoard;
@@ -48,7 +49,6 @@ public class GameController {
     private String level;
     private Ship[] comShips, userShips;
     private int currShipSize;
-
 
     public GameController(String thisLevel) {
         setThisLevel(thisLevel);
@@ -85,7 +85,7 @@ public class GameController {
         userTable = (RelativeLayout) game.findViewById(R.id.userBoard);
         userTable.addView(setRowsLayout);
         userTable.setGravity(Gravity.CENTER);
-
+        animationPlace = (RelativeLayout) game.findViewById(R.id.Animator);
     }
 
     public void createSetShipsBoard(Game setShipsScreen) {
@@ -738,6 +738,18 @@ public class GameController {
                                 ViewGroup.LayoutParams.MATCH_PARENT));
                         builder.setCancelable(true);
                         builder.show();
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        builder.dismiss();
+                        /*TranslateAnimation animation = new TranslateAnimation(0, 0, 0, 2000);
+                        animation.setDuration(3000);
+                        animation.setFillAfter(false);
+                        animation.setAnimationListener(new UserAnimationListener());
+
+                        this.getAnimationPlace().startAnimation(animation);*/
                     }
                 }
             } else {
@@ -757,6 +769,8 @@ public class GameController {
         game.getComShipsLeft().setText(Integer.toString(this.placedShips));
         game.getTurn().setText(R.string.yourTurn);
         game.getTurn().setTextColor(Color.GREEN);
+
+
     }
 
     public int getPlacedShips() {
@@ -772,6 +786,10 @@ public class GameController {
         return null;
     }
 
+    public RelativeLayout getAnimationPlace() {
+        return animationPlace;
+    }
+
     public Ship[] getComShips() {
         return comShips;
     }
@@ -783,12 +801,13 @@ public class GameController {
     public int[] getShipsSizes() {
         return this.shipsSizes;
     }
+
     private class UserAnimationListener implements Animation.AnimationListener{
 
         @Override
         public void onAnimationEnd(Animation animation) {
-            setTable.clearAnimation();
-            setTable.setVisibility(View.INVISIBLE);
+            animationPlace.clearAnimation();
+            animationPlace.setVisibility(View.INVISIBLE);
         }
 
         @Override

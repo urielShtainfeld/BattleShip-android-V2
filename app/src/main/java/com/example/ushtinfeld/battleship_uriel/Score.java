@@ -20,16 +20,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import data.DataHandler;
-import data.Record;
-import data.ScoreTable;
+import com.example.ushtinfeld.battleship_uriel.data.DataHandler;
+import com.example.ushtinfeld.battleship_uriel.data.Record;
+import com.example.ushtinfeld.battleship_uriel.data.ScoreTable;
 import entities.GameController;
 
-//TODO: handle data
 public class Score extends AppCompatActivity implements View.OnClickListener {
     private final double UNKNOWN_LONG = 33.356765;
     private final double UNKNOWN_LAT = 32.487563;
     private final String UNKONOWN = "Unknown";
+    DataHandler dh = new DataHandler();
     private TextView whoWin;
     private Button restart, mainScreen;
     String level;
@@ -42,7 +42,7 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
         try {
-            table = new ScoreTable();//table = DataHandler.getData(this);
+            table = dh.getData(this);
         }
         catch (Exception e){
             table = new ScoreTable();
@@ -155,7 +155,7 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
             table.newRecord(new Record(name, result ,UNKNOWN_LONG,UNKNOWN_LAT, level,place));
         }
 
-        DataHandler.saveScoreBoard(this,table);
+        dh.saveScoreBoard(this,table);
     }
 }
 

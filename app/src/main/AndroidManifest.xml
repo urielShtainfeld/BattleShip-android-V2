@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ushtinfeld.battleship_uriel">
+    <permission android:name="com.ushtinfeld.battleship_uriel.provider.READ" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <permission
@@ -23,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service android:name="bound.BoundService"></service>
-        <provider android:name=".data.DataHandler" android:authorities="com.ustinfeld.battleship_uriel.provider" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

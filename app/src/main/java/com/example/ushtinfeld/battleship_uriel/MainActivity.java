@@ -1,10 +1,8 @@
 package com.example.ushtinfeld.battleship_uriel;
 
-import android.*;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.net.wifi.aware.PublishConfig;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -21,8 +19,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
-import data.HighScoresTable;
-import entities.GameController;
+import com.example.ushtinfeld.battleship_uriel.data.HighScoresTable;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,GoogleApiClient.OnConnectionFailedListener , GoogleApiClient.ConnectionCallbacks , com.google.android.gms.location.LocationListener {
     private final int PERMISSION_LOCATION = 111;
@@ -33,14 +30,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button scoreBtn;
     private int easyBS, mediumBS, hardBS;
     private Location location;
-    HighScoresTable db;
     private GoogleApiClient googleApiClient;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setButtons();
-        db = new HighScoresTable(this);
     }
 
     private void setButtons() {
@@ -81,9 +76,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
-    }
-    public HighScoresTable getDb() {
-        return db;
     }
 
     @Override

@@ -6,6 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -49,6 +52,10 @@ public class Game extends AppCompatActivity implements CellListener, View.OnClic
     private int noOfShots;
     String level;
     private BoundService service;
+    private float[] StartAccValues;
+    private boolean GameStarted;
+    private boolean CompTurn;
+
     // TODO: add shots gifs
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,7 +148,9 @@ public class Game extends AppCompatActivity implements CellListener, View.OnClic
             int col = cell.getCol();
             int row = cell.getRow();
             if (controller.handelHit(col, row, this)) {
+                this.setCompTurn(true);
                 computerTurn();
+                this.setCompTurn(false);
                 noOfShots +=1;
             }
 
@@ -192,6 +201,8 @@ public class Game extends AppCompatActivity implements CellListener, View.OnClic
                 controller.setRandomMode(false);
                 controller.setCompBoard(false);
                 controller.setTextViews(this);
+                setGameStarted(true);
+                setCompTurn(false);
                 comTurnHandler = new Handler();
                 comTurn = new ComTurn(comTurnHandler, this);
                 gameRole = new GameRoles(controller.getPlacedShips(), controller.getPlacedShips());
@@ -314,7 +325,33 @@ public class Game extends AppCompatActivity implements CellListener, View.OnClic
     }
     @Override
     public void onAngelChange(boolean isRecovering) {
-        if(isRecovering)
+        if(isRecovering) {
+            this.outOfAngelTime = 0;
+        }else{
+            if (this.isGameStarted()) {
+                if (!this.isCompTurn()) {
+                    this.outOfAngelTime++;
+                    if(this.outOfAngelTime % 2 == 0) {
+                        AlertDialog.Builder notSameColRowAlert = new AlertDialog.Builder(this);
+                        notSameColRowAlert.setMessage("You sholdn't move, \n turn move to computer");
+                        notSameColRowAlert.setTitle("Oops...");
+                        notSameColRowAlert.setPositiveButton("OK", null);
+                        notSameColRowAlert.setCancelable(true);
+                        notSameColRowAlert.create().show();
+                        notSameColRowAlert.setPositiveButton("Ok",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                    }
+                                });
+                        this.setCompTurn(true);
+                        computerTurn();
+                        this.setCompTurn(false);
+                    }
+                }
+            }
+        }
+    }
+        /*if(isRecovering)
             this.outOfAngelTime = 0;
         else{
             this.outOfAngelTime++;
@@ -334,10 +371,35 @@ public class Game extends AppCompatActivity implements CellListener, View.OnClic
                 outOfAngelTime = 0;
 
             }
-        }
+        }*/
+
+
+    public float[] getStartAccValues() {
+        return StartAccValues;
+    }
+
+    public void setStartAccValues(float[] startAccValues) {
+        StartAccValues = startAccValues;
+    }
+
+    public boolean isGameStarted() {
+        return GameStarted;
+    }
+
+    public void setGameStarted(boolean gameStarted) {
+        GameStarted = gameStarted;
+    }
+
+    public boolean isCompTurn() {
+        return CompTurn;
+    }
+
+    public void setCompTurn(boolean compTurn) {
+        CompTurn = compTurn;
     }
 
     public BoundService getService() {
         return service;
     }
+
 }

@@ -9,9 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import data.DataHandler;
-import data.Record;
-import data.ScoreTable;
+import com.example.ushtinfeld.battleship_uriel.data.DataHandler;
+import com.example.ushtinfeld.battleship_uriel.data.Record;
+import com.example.ushtinfeld.battleship_uriel.data.ScoreTable;
 import entities.MapListener;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -32,7 +32,7 @@ public class ScoresMapFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap myMap;
     private MarkerOptions userMarker;
     private MapListener listener;
-
+    DataHandler dh = new DataHandler();
     public ScoresMapFragment() {
         // Required empty public constructor
 
@@ -62,10 +62,10 @@ public class ScoresMapFragment extends Fragment implements OnMapReadyCallback {
         myMap = googleMap;
         ScoreTable st;
         try{
-            //st = DataHandler.getData(getContext());
+            st = dh.getData(getContext());
         }
         catch (Exception e){
-            //st = new ScoreTable();
+            st = new ScoreTable();
         }
         ArrayList<Record> scores = st.getScoreTable();
         for(Record r :scores ){

@@ -1,4 +1,4 @@
-package data;
+package com.example.ushtinfeld.battleship_uriel.data;
 
 import java.util.Comparator;
 

@@ -9,15 +9,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import java.util.ArrayList;
-import data.DataHandler;
-import data.Record;
-import data.ScoreTable;
+import com.example.ushtinfeld.battleship_uriel.data.DataHandler;
+import com.example.ushtinfeld.battleship_uriel.data.Record;
+import com.example.ushtinfeld.battleship_uriel.data.ScoreTable;
 
 public class highScoresFragment extends android.support.v4.app.Fragment {
 
     ArrayList<String> recordList;
     private OnListFragmentInteractionListener mListener;
-
+    DataHandler dh = new DataHandler();
     public highScoresFragment() {
     }
 
@@ -27,15 +27,15 @@ public class highScoresFragment extends android.support.v4.app.Fragment {
         View view = inflater.inflate(R.layout.fragment_highscores_list, container, false);
         ScoreTable table;
         try{
-            table =  new ScoreTable();//DataHandler.getData(getContext());
+            table = dh.getData(getContext());
         }
         catch(Exception e){
             table = new ScoreTable();
         }
         recordList = new ArrayList<>();
-        ArrayList<Record> record;
-        record = table.getScoreTable();
-        for (Record ro : record){
+        ArrayList<Record> records;
+        records = table.getScoreTable();
+        for (Record ro : records){
             try{
                 recordList.add(ro.toString());
             }

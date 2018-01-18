@@ -1,4 +1,4 @@
-package data;
+package com.example.ushtinfeld.battleship_uriel.data;
 
 /**
  * Created by ushtinfeld on 12/01/2018.
